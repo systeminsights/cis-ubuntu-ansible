@@ -239,7 +239,7 @@
   - name: 13.18 Check for Presence of User .netrc Files (Scored)
     debug: msg='Check if {{ item.stat.path}} is needed, and remove otherwise'
     when: item is defined and item.stat.exists == True
-    with_items: '{{ netrc_files.results }}'
+    with_items: '{{ netrc_files.results | default([]) }}'
     tags:
       - section13
       - section13.18
