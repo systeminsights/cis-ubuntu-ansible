@@ -80,7 +80,7 @@
   - name: 12.9 Find Un-grouped Files and Directories (Scored)
     debug: >
         msg="{{ item }}"
-    with_items: "{{ungrouped_files.stdout_lines}}"
+    with_items: "{{ungrouped_files.stdout_lines | default([])}}"
     tags:
       - section12
       - section12.9
