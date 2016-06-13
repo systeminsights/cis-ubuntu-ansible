@@ -278,7 +278,7 @@
   - name: 13.20.2 Ensure shadow group is empty (Scored)
     shell: awk -F':' '($4 == "{{ item }}") { print }' /etc/passwd
     register: awk_passwd_shadow
-    with_items: "{{shadow_group_id.stdout_lines}}"
+    with_items: "{{shadow_group_id.stdout_lines | default([])}}"
     changed_when: False
     failed_when: awk_passwd_shadow.stdout != ''
     always_run: True
