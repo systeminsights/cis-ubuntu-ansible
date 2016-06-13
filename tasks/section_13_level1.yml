@@ -174,7 +174,7 @@
 
   - name: 13.12 Check That Users Are Assigned Valid Home Directories (Scored)
     stat: path='{{ item }}'
-    with_items: "{{home_users.stdout_lines}}"
+    with_items: "{{home_users.stdout_lines | default([])}}"
     register: rstat
     failed_when: rstat is defined and rstat.stat.isdir == False
     always_run: True
