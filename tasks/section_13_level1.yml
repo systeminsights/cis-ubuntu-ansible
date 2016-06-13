@@ -107,7 +107,7 @@
         path='{{ item }}'
         mode='g-w,o-rwx'
         state=directory
-    with_items: "{{home_users.stdout_lines}}"
+    with_items: "{{home_users.stdout_lines | default([])}}"
     when: modify_user_homes == True
     tags:
       - section13
