@@ -164,7 +164,7 @@
 
   - name: 13.11 Check Groups in /etc/passwd (Scored)
     command: grep -q -P "^.*?:[^:]*:{{ item }}:" /etc/group
-    with_items: "{{groups_id_cut.stdout_lines}}"
+    with_items: "{{groups_id_cut.stdout_lines | default([])}}"
     register: groups_present
     changed_when: False
     always_run: True
