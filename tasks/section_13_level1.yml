@@ -11,7 +11,7 @@
 
   - name: 13.1 Ensure Password Fields are Not Empty (locking accounts) (Scored)
     command: passwd -l '{{ item }}'
-    with_items: "{{awk_empty_shadow.stdout_lines}}"
+    with_items: "{{awk_empty_shadow.stdout_lines | default([])}}"
     when: lock_shadow_accounts == True
     tags:
       - section13
