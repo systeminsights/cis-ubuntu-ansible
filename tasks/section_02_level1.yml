@@ -119,7 +119,7 @@
     file:
         path: "{{ item }}"
         mode: "a+t"
-    with_items: "{{sticky_bit_dirs.stdout_lines | default([])}}"
+    with_items: "{{(sticky_bit_dirs|default({})).stdout_lines | default([])}}"
     tags:
       - section2
       - section2.17
