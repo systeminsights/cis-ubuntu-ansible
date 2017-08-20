@@ -209,6 +209,7 @@
     failed_when: gids_list.stdout != ''
     changed_when: False
     check_mode: No
+    check_mode: no
     tags:
       - section13
       - section13.15
@@ -219,6 +220,7 @@
     failed_when: uids_list.stdout != ''
     changed_when: False
     check_mode: No
+    check_mode: no
     tags:
       - section13
       - section13.16
@@ -229,6 +231,7 @@
     failed_when: uids_list.stdout != ''
     changed_when: False
     check_mode: No
+    check_mode: no
     tags:
       - section13
       - section13.17
@@ -237,6 +240,7 @@
     stat: path='{{ item }}/.netrc'
     with_items: "{{(home_users|default({})).stdout_lines | default([])}}"
     check_mode: No
+    check_mode: no
     changed_when: False
     register: netrc_files
     tags:
@@ -265,7 +269,7 @@
     register: shadow_group_empty
     failed_when: shadow_group_empty.stdout != ''
     changed_when: False
-    check_mode: No
+    always_run: True
     tags:
       - section13
       - section13.20
@@ -276,7 +280,7 @@
     register: shadow_group_id
     failed_when: False
     changed_when: False
-    check_mode: No
+    always_run: True
     tags:
       - section13
       - section13.20
@@ -288,7 +292,7 @@
     with_items: "{{(shadow_group_id|default({})).stdout_lines | default([])}}"
     changed_when: False
     failed_when: awk_passwd_shadow.stdout != ''
-    check_mode: No
+    always_run: True
     tags:
       - section13
       - section13.20
