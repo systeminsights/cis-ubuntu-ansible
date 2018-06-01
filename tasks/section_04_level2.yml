@@ -12,7 +12,7 @@
     register: grub_apparmor
     changed_when: False
     when: grub_cfg_file.stat.exists
-    check_mode: No
+    always_run: True
     tags:
       - section4
       - section4.5
@@ -29,7 +29,7 @@
     register: extlinux_apparmor
     changed_when: False
     when: extlinux_cfg_file.stat.exists
-    check_mode: No
+    always_run: True
     tags:
       - section4
       - section4.5
@@ -38,7 +38,7 @@
     command: "grep CONFIG_DEFAULT_SECURITY_APPARMOR /boot/config-{{ ansible_kernel }}"
     register: boot_apparmor
     changed_when: False
-    check_mode: No
+    always_run: True
     tags:
       - section4
       - section4.5
@@ -86,7 +86,7 @@
 
   - name: 4.5.10 Determine if AppArmor started without error (Not Scored)
     fail: msg="Apparmor can not be started. This is normal behavior if you run the playbook for the first time.\nPlease reboot the machine and run it again to proceed with the rest of the playbook."
-    when: apparmor_status|failed
+    when: apparmor_status.failed is defined and apparmor_status.failed == true
 
   - name: 4.5.11 Fix rsyslog /run/utmp permissions (Not Scored)
     lineinfile: >
