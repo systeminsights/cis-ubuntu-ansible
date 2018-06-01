@@ -86,7 +86,7 @@
 
   - name: 4.5.10 Determine if AppArmor started without error (Not Scored)
     fail: msg="Apparmor can not be started. This is normal behavior if you run the playbook for the first time.\nPlease reboot the machine and run it again to proceed with the rest of the playbook."
-    when: apparmor_status.failed is defined
+    when: apparmor_status.failed is defined and apparmor_status.failed == true
 
   - name: 4.5.11 Fix rsyslog /run/utmp permissions (Not Scored)
     lineinfile: >
