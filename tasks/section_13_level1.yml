@@ -209,7 +209,6 @@
     failed_when: gids_list.stdout != ''
     changed_when: False
     check_mode: No
-    check_mode: no
     tags:
       - section13
       - section13.15
@@ -220,7 +219,6 @@
     failed_when: uids_list.stdout != ''
     changed_when: False
     check_mode: No
-    check_mode: no
     tags:
       - section13
       - section13.16
@@ -231,7 +229,6 @@
     failed_when: uids_list.stdout != ''
     changed_when: False
     check_mode: No
-    check_mode: no
     tags:
       - section13
       - section13.17
@@ -240,7 +237,6 @@
     stat: path='{{ item }}/.netrc'
     with_items: "{{(home_users|default({})).stdout_lines | default([])}}"
     check_mode: No
-    check_mode: no
     changed_when: False
     register: netrc_files
     tags:
