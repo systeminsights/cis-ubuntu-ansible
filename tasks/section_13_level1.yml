@@ -265,7 +265,7 @@
     register: shadow_group_empty
     failed_when: shadow_group_empty.stdout != ''
     changed_when: False
-    always_run: True
+    check_mode: no
     tags:
       - section13
       - section13.20
@@ -276,7 +276,7 @@
     register: shadow_group_id
     failed_when: False
     changed_when: False
-    always_run: True
+    check_mode: no
     tags:
       - section13
       - section13.20
@@ -288,7 +288,7 @@
     with_items: "{{(shadow_group_id|default({})).stdout_lines | default([])}}"
     changed_when: False
     failed_when: awk_passwd_shadow.stdout != ''
-    always_run: True
+    check_mode: no
     tags:
       - section13
       - section13.20
